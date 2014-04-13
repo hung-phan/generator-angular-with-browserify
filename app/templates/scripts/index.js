@@ -5,7 +5,7 @@ window.jQuery = $;<% if (cssFramework === 'SASSBootstrap') { %>
 /*include boostrap*/
 var bootstrap = require('./../bower_components/sass-bootstrap/dist/js/bootstrap');<% } %><% if (includeModernizr) { %>
 /*include modernizr*/
-var modernizr = require('browsernizr');<% } %>
+require('browsernizr');<% } %>
 
 /*include angular*/
 require('angular/angular');
