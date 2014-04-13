@@ -1,6 +1,22 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.1",
+  "dependencies": {<% if (cssFramework === 'SASSBootstrap') { %>
+    "sass-bootstrap": "*",<% } %><% if (includeFontAwesome) { %>
+    "font-awesome": "*",<% } %><% if (includeUnderscore) { %>
+    "underscore": "*",<% } %>
+    "angular": "*",
+    "angular-resource": "*",
+    "angular-mocks": "*",<% if (includeBindonce) { %>
+    "angular-bindonce": "*",<% } %>
+    "angular-ui-router": "0.2.7",<% if (includeUIBootstrap) { %>
+    "angular-bootstrap": "*",<% } %><% if (includeAngularAnimate) { %>
+    "angular-animate": "*",<% } %>
+    "jquery": "*",<% if (includeButtonCss) { %>
+    "Buttons": "*",<% } %><% if (includeAnimateCss) { %>
+    "animate-sass": "*",<% } %>
+    "requirejs": "*",
+    "modernizr": "*"
+  }
 }
 
