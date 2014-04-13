@@ -90,6 +90,10 @@ module.exports = function(grunt) {
             //files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
             //tasks: ['sass:server', 'autoprefixer', 'concat']
             //},
+            browserify: {
+                files: ['<%%= yeoman.app %>/jsx/{,*/}*.jsx'],
+                tasks: ['browserify']
+            },
             styles: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['newer:copy:styles', 'autoprefixer']
@@ -150,65 +154,34 @@ module.exports = function(grunt) {
                 '!<%%= yeoman.app %>/scripts/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
-        },
+        },<% if (testFramework === 'jasmine') { %>
 
-        // Require js config
-        bower: {
-            target: {
-                rjsConfig: '<%%= yeoman.app %>/scripts/main.js'
+        // karma testing
+        karma: {
+            unit: {
+                configFile: 'config/karma.conf.js'
             }
         },
 
-        // require js
-        requirejs: {
-            dist: {
+        // Jasmine testing framework configuration options
+        jasmine: {
+            pivotal: {
+                src: '<%%= yeoman.app %>/scripts/**/*.js',
                 options: {
-                    dir: "<%%= yeoman.dist %>/scripts/",
-                    baseUrl: '<%%= yeoman.app %>/scripts', // Directory to look for the require configuration file
-                    mainConfigFile: '<%%= yeoman.app %>/scripts/main.js', // This is relative to the grunt file
-                    modules: [{
-                            name: 'main'
-                        } // Create a global bundle
-                    ],
-                    preserveLicenseComments: false, // remove all comments
-                    removeCombined: true, // remove files which aren't in bundles
-                    optimize: 'uglify', // minify bundles with uglify 2
-                    useStrict: true
+                    specs: 'test/spec/*Spec.js',
+                    helpers: 'test/spec/*Helper.js'
                 }
             }
-        },
-        <%
-        if (testFramework === 'jasmine') { %>
-            // karma testing
-            karma: {
-                unit: {
-                    configFile: 'config/karma.conf.js'
+        },<% } else { %>
+        // Mocha tesing framework configuration options
+        mocha: {
+            all: {
+                options: {
+                    run: true,
+                    urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
                 }
-            },
-
-            // Jasmine testing framework configuration options
-            jasmine: {
-                pivotal: {
-                    src: '<%%= yeoman.app %>/scripts/**/*.js',
-                    options: {
-                        specs: 'test/spec/*Spec.js',
-                        helpers: 'test/spec/*Helper.js'
-                    }
-                }
-            },
-            <%
-        } else { %>
-            // Mocha tesing framework configuration options
-            mocha: {
-                all: {
-                    options: {
-                        run: true,
-                        urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
-                    }
-                }
-            },
-            <%
-        } %>
+            }
+        },<% } %>
         // Compiles Sass to CSS and generates necessary files if requested
         compass: {
             options: {
@@ -282,6 +255,22 @@ module.exports = function(grunt) {
                     dest: '.tmp/styles/'
                 }]
             }
+        },
+
+        /*browserify task*/
+        browserify: {
+          app: {
+            files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/jsx/main.jsx'] },
+            options: {
+              alias: [
+                './app/bower_components/jquery/dist/jquery.js:jquery',
+                './app/bower_components/angular/angular.js:angular',<% if (includeUnderscore) { %>
+                './app/bower_components/underscore/underscore.js:underscore',<% } %><% if (cssFramework === 'SASSBootstrap') { %>
+                './app/bower_components/sass-bootstrap/dist/js/bootstrap.js:bootstrap'<% } %>
+              ],
+              transform: [require('grunt-react').browserify]
+            }
+          }
         },
 
         // Automatically inject Bower components into the HTML file
@@ -478,7 +467,6 @@ module.exports = function(grunt) {
             ]
         }
     });
-    grunt.registerTask('bundle-js', ['bower']);
 
     grunt.registerTask('serve', function(target) {
         if (target === 'dist') {
@@ -519,34 +507,14 @@ module.exports = function(grunt) {
         ]);
     });
 
-    grunt.registerTask('requirejs-bundle', function() {
-        function replaceBetween(string, start, end, what) {
-            return string.substring(0, start) + what + string.substring(end);
-        };
-
-        var mainjs = grunt.file.read('dist/scripts/main.js'),
-            first, second, content;
-
-        while (mainjs.indexOf('../bower_components') != -1) {
-            first = mainjs.indexOf('../bower_components');
-            second = mainjs.indexOf('"', first);
-            content = 'vendor/' + mainjs.substring(first, second).split('/').pop();
-            mainjs = replaceBetween(mainjs, first, second, content);
-        }
-        grunt.file.write('dist/scripts/main.js', mainjs);
-    });
-
     grunt.registerTask('build', [
         'clean:dist',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
         'cssmin',
-        'requirejs',
-        'copy:afterBuild',
-        'clean:afterBuild',
-        'requirejs-bundle',
-        // 'uglify',
+        'browserify',
+        'uglify',
         'copy:dist',
         'modernizr',
         // 'rev',
