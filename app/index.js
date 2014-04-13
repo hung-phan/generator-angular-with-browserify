@@ -21,8 +21,8 @@ var AngularWithBrowserifyGenerator = module.exports = function AngularWithBrowse
       options: {
         'skip-install': options['skip-install-message'],
         'skip-message': options['skip-install']
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
+      }
+    }
   });
 
   this.options = options;
