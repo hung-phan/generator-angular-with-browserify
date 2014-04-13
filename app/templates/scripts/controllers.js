@@ -1,6 +1,5 @@
 'use strict';
-var angular = require('angular');
-var services = require('./../services/services');
+require('angular/angular');
 
 /* Controllers */
 angular.module('webControllers', [

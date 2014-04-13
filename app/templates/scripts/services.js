@@ -1,5 +1,5 @@
 'use strict';
-var angular = require('angular');
+require('angular/angular');
 
 /* Services */
 angular.module('webServices', [

@@ -91,7 +91,7 @@ module.exports = function(grunt) {
             //tasks: ['sass:server', 'autoprefixer', 'concat']
             //},
             browserify: {
-                files: ['<%%= yeoman.app %>/jsx/{,*/}*.jsx'],
+                files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
                 tasks: ['browserify']
             },
             styles: {
@@ -260,15 +260,14 @@ module.exports = function(grunt) {
         /*browserify task*/
         browserify: {
           app: {
-            files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/jsx/main.jsx'] },
+            files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
             options: {
               alias: [
                 './app/bower_components/jquery/dist/jquery.js:jquery',
                 './app/bower_components/angular/angular.js:angular',<% if (includeUnderscore) { %>
                 './app/bower_components/underscore/underscore.js:underscore',<% } %><% if (cssFramework === 'SASSBootstrap') { %>
                 './app/bower_components/sass-bootstrap/dist/js/bootstrap.js:bootstrap'<% } %>
-              ],
-              transform: [require('grunt-react').browserify]
+              ]
             }
           }
         },
@@ -476,6 +475,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
+            'browserify',
             'concat',
             'autoprefixer',
             'connect:livereload',

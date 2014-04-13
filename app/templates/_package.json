@@ -42,6 +42,12 @@
     "time-grunt": "*",
     "jshint-stylish": "*"
   },
+  "scripts": {
+    "install": "napa"
+  },
+  "napa": {
+    "angular": "angular/bower-angular"
+  },
   "engines": {
     "node": ">=0.8.0"
   }

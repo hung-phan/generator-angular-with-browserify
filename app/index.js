@@ -208,7 +208,7 @@ AngularWithBrowserifyGenerator.prototype.mainStylesheet = function mainStyleshee
 AngularWithBrowserifyGenerator.prototype.jsFile = function jsFile() {
   var prefix = 'app/scripts';
   this.mkdir(prefix);
-  this.copy('scripts/main.js', prefix + '/main.js');
+  this.copy('scripts/index.js', prefix + '/index.js');
   this.copy('scripts/controllers.js', prefix + '/controllers/controllers.js');
   this.copy('scripts/directives.js', prefix + '/directives/directives.js');
   this.copy('scripts/filters.js', prefix + '/filters/filters.js');
@@ -218,7 +218,6 @@ AngularWithBrowserifyGenerator.prototype.jsFile = function jsFile() {
 AngularWithBrowserifyGenerator.prototype.app = function app() {
   this.mkdir('app/images');
   this.mkdir('app/partials');
-  this.mkdir('app/scripts/vendor');
   this.mkdir('config');
 };
 

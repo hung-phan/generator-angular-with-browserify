@@ -5,7 +5,6 @@
     "sass-bootstrap": "*",<% } %><% if (includeFontAwesome) { %>
     "font-awesome": "*",<% } %><% if (includeUnderscore) { %>
     "underscore": "*",<% } %>
-    "angular": "*",
     "angular-resource": "*",
     "angular-mocks": "*",<% if (includeBindonce) { %>
     "angular-bindonce": "*",<% } %>
