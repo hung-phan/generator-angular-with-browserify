@@ -134,8 +134,7 @@ module.exports = function(grunt) {
                 files: [{
                     dot: true,
                     src: [
-                        '<%%= yeoman.dist %>/scripts/*.js',
-                        '!<%%= yeoman.dist %>/scripts/main.js'
+                        '<%%= yeoman.dist %>/scripts/index.js'
                     ]
                 }]
             },
@@ -513,8 +512,9 @@ module.exports = function(grunt) {
         'cssmin',
         'browserify',
         'uglify',
+        'clean:afterBuild',
         'copy:dist',
-        'modernizr',
+        //'modernizr',
         // 'rev',
         'usemin',
         'htmlmin'
