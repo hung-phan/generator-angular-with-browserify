@@ -263,10 +263,8 @@ module.exports = function(grunt) {
             files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
             options: {
               alias: [
-                './app/bower_components/jquery/dist/jquery.js:jquery',
-                './app/bower_components/angular/angular.js:angular',<% if (includeUnderscore) { %>
-                './app/bower_components/underscore/underscore.js:underscore',<% } %><% if (cssFramework === 'SASSBootstrap') { %>
-                './app/bower_components/sass-bootstrap/dist/js/bootstrap.js:bootstrap'<% } %>
+                './app/bower_components/jquery/dist/jquery.js:jquery',<% if (includeUnderscore) { %>
+                './app/bower_components/underscore/underscore.js:underscore',<% } %>
               ]
             }
           }

@@ -12,19 +12,13 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-      {pattern: 'app/bower_components/**/*.js', included: false},
-      {pattern: 'app/scripts/**/*.js', included: false},
-      {pattern: 'test/**/*Spec.js', included: false},
-      {pattern: 'test/**/*Helper.js', included: false},
-      'test/test-main.js',
-    ],
+    files: ['test/specs/*.js'],
 
+    // Add browserify to preprocessors
+    preprocessors: {'test/specs/*.js': ['browserify']},
 
     // list of files to exclude
-    exclude: [
-        'scripts/main.js'
-    ],
+    exclude: [],
 
 
     // test results reporter to use

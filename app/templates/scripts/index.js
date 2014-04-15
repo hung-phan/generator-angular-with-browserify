@@ -1,6 +1,6 @@
 'use strict';
 /*include jQuery*/
-var $ = require('jquery');
+var $ = require('./../bower_components/jquery/dist/jquery');
 window.jQuery = $;<% if (cssFramework === 'SASSBootstrap') { %>
 /*include boostrap*/
 var bootstrap = require('./../bower_components/sass-bootstrap/dist/js/bootstrap');<% } %><% if (includeModernizr) { %>
