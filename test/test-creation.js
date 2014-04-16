@@ -4,7 +4,6 @@
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
 
-
 describe('angular-with-browserify generator', function () {
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
@@ -27,7 +26,9 @@ describe('angular-with-browserify generator', function () {
         ];
 
         helpers.mockPrompt(this.app, {
-            cssFramework: 'SASSBootstrap'
+            cssFile: ['includeFontAwesome'],
+            jsFile: ['includeJasmine', 'includeModernizr']
+
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
