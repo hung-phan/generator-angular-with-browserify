@@ -9,7 +9,6 @@ require('browsernizr');<% } %>
 
 /*include angular*/
 require('angular/angular');
-window.angular = angular;
 var angularResource = require('./../bower_components/angular-resource/angular-resource');<% if (includeAngularAnimate) { %>
 var angularAnimate = require('./../bower_components/angular-animate/angular-animate');<% } %>
 var angularUiRouter = require('./../bower_components/angular-ui-router/release/angular-ui-router');<% if (includeBindonce) { %>
