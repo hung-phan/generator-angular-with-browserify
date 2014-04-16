@@ -12,7 +12,10 @@ describe('angular-with-browserify generator', function () {
             }
 
             this.app = helpers.createGenerator('angular-with-browserify:app', [
-                '../../app'
+                '../../app', [
+                  helpers.createDummyGenerator(),
+                  'mocha:app'
+                ]
             ]);
             done();
         }.bind(this));
