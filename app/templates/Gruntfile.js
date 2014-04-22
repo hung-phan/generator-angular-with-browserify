@@ -89,7 +89,7 @@ module.exports = function(grunt) {
             },
             browserify: {
                 files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
-                tasks: ['browserify']
+                tasks: ['browserify:app']
             },
             styles: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
@@ -227,6 +227,16 @@ module.exports = function(grunt) {
         /*browserify task*/
         browserify: {
           app: {
+            files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
+            options: {
+              alias: [
+                './app/bower_components/jquery/dist/jquery.js:jquery',<% if (includeLodash) { %>
+                './app/bower_components/lodash/dist/lodash.js:lodash',<% } %>
+              ],
+              debug: true
+            }
+          },
+          dist: {
             files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
             options: {
               alias: [
@@ -437,7 +447,7 @@ module.exports = function(grunt) {
         grunt.task.run([
             'clean:server',
             'concurrent:server',
-            'browserify',
+            'browserify:app',
             'concat',
             'autoprefixer',
             'connect:livereload',
@@ -472,7 +482,7 @@ module.exports = function(grunt) {
         'concurrent:dist',
         'autoprefixer',
         'cssmin',
-        'browserify',
+        'browserify:dist',
         'uglify',
         'clean:afterBuild',
         'copy:dist',
