@@ -2,8 +2,7 @@
 require('angular/angular');
 
 /* Directives */
-angular.module('webDirectives', [
-]).directive('paggie', [
+angular.module('webDirectives', []).directive('paggie', [
 
     function() {
         return {

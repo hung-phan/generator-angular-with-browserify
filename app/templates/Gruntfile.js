@@ -75,10 +75,11 @@ module.exports = function(grunt) {
                 files: ['test/spec/{,*/}*.js'],
                 tasks: ['test:watch']
             },
-            karma: {
-                files: ['app/scripts/**/*.js', 'test/**/*.js'],
-                tasks: ['karma:unit'] //NOTE the :run flag
-            },
+            /*uncomment this if you want to run testing everytime your scripts changing*/
+            //karma: {
+                //files: ['app/scripts/**/*.js', 'test/**/*.js'],
+                //tasks: ['karma:unit'] //NOTE the :run flag
+            //},
             gruntfile: {
                 files: ['Gruntfile.js']
             },
@@ -86,10 +87,6 @@ module.exports = function(grunt) {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer', 'concat']
             },
-            //scripts: {
-            //files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-            //tasks: ['sass:server', 'autoprefixer', 'concat']
-            //},
             browserify: {
                 files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
                 tasks: ['browserify']
@@ -208,35 +205,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-        /*
-        sass: {
-            dist: {
-                 options: {
-                    style: 'compressed'
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.app %>/styles',
-                    src: ['*.scss'],
-                    dest: '.tmp/styles',
-                    ext: '.css'
-                }]
-            },
-            server: {
-                options: {
-                    debugInfo: true,
-                    style: 'expanded'
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.app %>/styles',
-                    src: ['*.scss'],
-                    dest: '.tmp/styles',
-                    ext: '.css'
-                }]
-            }
-        },
-        */
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
@@ -262,8 +230,8 @@ module.exports = function(grunt) {
             files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
             options: {
               alias: [
-                './app/bower_components/jquery/dist/jquery.js:jquery',<% if (includeUnderscore) { %>
-                './app/bower_components/underscore/underscore.js:underscore',<% } %>
+                './app/bower_components/jquery/dist/jquery.js:jquery',<% if (includeLodash) { %>
+                './app/bower_components/lodash/dist/lodash.js:lodash',<% } %>
               ]
             }
           }
@@ -426,7 +394,6 @@ module.exports = function(grunt) {
             }
         },
 
-
         // Generates a custom Modernizr build that includes only the tests you
         // reference in your app
         modernizr: {
@@ -448,7 +415,6 @@ module.exports = function(grunt) {
         concurrent: {
             server: [
                 'compass:server',
-                //'sass:server',
                 'copy:styles'
             ],
             test: [
@@ -456,7 +422,6 @@ module.exports = function(grunt) {
             ],
             dist: [
                 'compass',
-                //'sass:dist',
                 'copy:styles',
                 'imagemin',
                 'svgmin'
@@ -495,12 +460,9 @@ module.exports = function(grunt) {
         }
 
         grunt.task.run([
-            'connect:test', <%
-            if (testFramework === 'mocha') { %>
-                    'mocha' <%
-            } else if (testFramework === 'jasmine') { %>
-                    'jasmine' <%
-            } %>
+            'connect:test', <% if (testFramework === 'mocha') { %>
+            'mocha' <% } else if (testFramework === 'jasmine') { %>
+            'jasmine' <% } %>
         ]);
     });
 
