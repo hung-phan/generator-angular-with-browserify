@@ -2,7 +2,7 @@
 var webApp = require('./../../app/scripts/index.js');
 require('./../../app/bower_components/angular-mocks/angular-mocks.js');
 
-describe('angular template testing', function() {
+describe('angular template binding', function() {
     var element;
     var $scope;
     beforeEach(angular.mock.module('webApp'));
@@ -12,8 +12,8 @@ describe('angular template testing', function() {
         element = $compile(element)($scope);
     }));
 
-    it('should do something useful', function() {
+    it('should be 4', function() {
         $scope.$digest();
-        expect(element.html()).toBe("4");
+        expect(element.html()).toBe('4');
     });
 });
