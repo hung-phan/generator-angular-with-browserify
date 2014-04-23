@@ -33,6 +33,8 @@ Other dependencies
 
 4. Napa (npm -g install napa)
 
+5. Compass (gem install compass)
+
 ## Usage
 
 The version of generator uses SASS Bootstrap as its main theme. If you want to use Compass framework, make sure that you
