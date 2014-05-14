@@ -17,3 +17,21 @@ describe('angular template binding', function() {
         expect(element.html()).toBe('4');
     });
 });
+
+describe('directive with templateUrl testing', function() {
+    var element;
+    var $scope;
+    beforeEach(angular.mock.module('webApp'));
+    beforeEach(angular.mock.module('partials/paggie.html'));
+    beforeEach(angular.mock.inject(function($compile, _$rootScope_) {
+        $scope = _$rootScope_;
+        element = angular.element("<paggie></paggie>");
+        element = $compile(element)($scope);
+    }));
+
+    it('template should be binded', function() {
+        $scope.$digest();
+        expect(element.html()).toBe('This is the template');
+    });
+});
+

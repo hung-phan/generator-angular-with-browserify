@@ -10,16 +10,25 @@ module.exports = function(config) {
     // frameworks to use
     frameworks: ['jasmine', 'browserify'],
 
-
     // list of files / patterns to load in the browser
-    files: ['test/specs/*.js'],
+    files: [
+      'test/specs/*.js',
+      'app/partials/**/*.html'
+    ],
 
     // Add browserify to preprocessors
-    preprocessors: {'test/specs/*.js': ['browserify']},
+    preprocessors: {
+      'test/specs/*.js': ['browserify'],
+      'app/partials/**/*.html': 'ng-html2js'
+    },
+
+    ngHtml2JsPreprocessor: {
+      // strip app from the file path
+      stripPrefix: 'app/'
+    },
 
     // list of files to exclude
     exclude: [],
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
