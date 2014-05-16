@@ -64,13 +64,13 @@ module.exports = function(grunt) {
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
-            js: {
-                files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
-                tasks: ['jshint'],
-                options: {
-                    livereload: true
-                }
-            },
+            //js: {
+                //files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
+                //tasks: ['jshint'],
+                //options: {
+                    //livereload: true
+                //}
+            //},
             jstest: {
                 files: ['test/spec/{,*/}*.js'],
                 tasks: ['test:watch']
@@ -89,7 +89,10 @@ module.exports = function(grunt) {
             },
             browserify: {
                 files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
-                tasks: ['browserify:app']
+                tasks: ['browserify:app'],
+                options: {
+                    livereload: true
+                }
             },
             styles: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
