@@ -88,7 +88,10 @@ module.exports = function(grunt) {
                 tasks: ['compass:server', 'autoprefixer', 'concat']
             },
             browserify: {
-                files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: [
+                    '<%%= yeoman.app %>/scripts/{,*/}*.js',
+                    '!<%%= yeoman.app %>/scripts/main.js'
+                ],
                 tasks: ['browserify:app'],
                 options: {
                     livereload: true
