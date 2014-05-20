@@ -51,9 +51,14 @@ $ grunt serve
 ```
 It will automatically open the webpage on your localhost:9000, or you will have to do it manuallly
 
-To run test
+To run unit test
 ```
 $ grunt karma:unit:start
+```
+
+To run e2e test. This requires selenium browser and chromedriver. Make sure you view [angular/protractor] (https://github.com/angular/protractor)
+```
+$ grunt shell:protractor
 ```
 
 To build files for production
