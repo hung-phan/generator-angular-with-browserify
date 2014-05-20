@@ -33,6 +33,8 @@ Other dependencies
 
 4. Napa (npm -g install napa)
 
+5. SASS (gem install sass)
+
 5. Compass (gem install compass)
 
 ## Usage
