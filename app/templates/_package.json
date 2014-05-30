@@ -34,8 +34,8 @@
     "grunt-rev": "*",
     "grunt-shell": "*",
     "grunt-autoprefixer": "*",
-    "grunt-usemin": "*",
-    "grunt-modernizr": "*",
+    "grunt-usemin": "*",<% if (includeModernizr) { %>
+    "grunt-modernizr": "*",<% } %>
     "grunt-newer": "*",
     "grunt-svgmin": "*",
     "grunt-concurrent": "*",

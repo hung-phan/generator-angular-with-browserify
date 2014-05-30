@@ -1,11 +1,4 @@
-// Generated on 2014-01-14 using generator-webapp 0.4.6
 'use strict';
-
-// # Globbing
-// for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
-// use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
 
 module.exports = function(grunt) {
 
@@ -67,15 +60,13 @@ module.exports = function(grunt) {
             //js: {
                 //files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
                 //tasks: ['jshint'],
-                //options: {
-                    //livereload: true
-                //}
+                //options: { livereload: true }
             //},
             jstest: {
                 files: ['test/spec/{,*/}*.js'],
                 tasks: ['test:watch']
             },
-            /*uncomment this if you want to run testing everytime your scripts changing*/
+            //uncomment this if you want to run testing everytime your scripts changing
             //karma: {
                 //files: ['app/scripts/**/*.js', 'test/**/*.js'],
                 //tasks: ['karma:unit'] //NOTE the :run flag
@@ -93,9 +84,7 @@ module.exports = function(grunt) {
                     '!<%%= yeoman.app %>/scripts/main.js'
                 ],
                 tasks: ['browserify:app'],
-                options: {
-                    livereload: true
-                }
+                options: { livereload: true }
             },
             styles: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
@@ -115,12 +104,11 @@ module.exports = function(grunt) {
 
         shell: { // Task
             protractor: { // Target
-                options: { // Options
-                    stdout: true
-                },
+                options: { stdout: true },
                 command: 'protractor config/e2e.conf.js'
             }
         },
+
         // Empties folders to start fresh
         clean: {
             dist: {
@@ -136,9 +124,7 @@ module.exports = function(grunt) {
             afterBuild: {
                 files: [{
                     dot: true,
-                    src: [
-                        '<%%= yeoman.dist %>/scripts/index.js'
-                    ]
+                    src: ['<%%= yeoman.dist %>/scripts/index.js']
                 }]
             },
             server: '.tmp'
@@ -175,6 +161,7 @@ module.exports = function(grunt) {
                 }
             }
         },<% } else { %>
+
         // Mocha tesing framework configuration options
         mocha: {
             all: {
@@ -184,6 +171,7 @@ module.exports = function(grunt) {
                 }
             }
         },<% } %>
+
         // Compiles Sass to CSS and generates necessary files if requested
         compass: {
             options: {
@@ -211,6 +199,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+
         // Add vendor prefixed styles
         autoprefixer: {
             options: {
@@ -230,7 +219,7 @@ module.exports = function(grunt) {
             }
         },
 
-        /*browserify task*/
+        //browserify task
         browserify: {
           app: {
             files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
@@ -279,17 +268,13 @@ module.exports = function(grunt) {
         // concat, minify and revision files. Creates configurations in memory so
         // additional tasks can operate on them
         useminPrepare: {
-            options: {
-                dest: '<%%= yeoman.dist %>'
-            },
+            options: { dest: '<%%= yeoman.dist %>' },
             html: '<%%= yeoman.app %>/index.html'
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
-            options: {
-                assetsDirs: ['<%%= yeoman.dist %>']
-            },
+            options: { assetsDirs: ['<%%= yeoman.dist %>'] },
             html: ['<%%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%%= yeoman.dist %>/styles/{,*/}*.css']
         },
@@ -303,9 +288,7 @@ module.exports = function(grunt) {
                     src: '{,*/}*.{gif,jpeg,jpg,png}',
                     dest: '<%%= yeoman.dist %>/images'
                 }],
-                options: {
-                    cache: false
-                }
+                options: { cache: false }
             }
         },
         svgmin: {
@@ -387,20 +370,6 @@ module.exports = function(grunt) {
                     ]
                 }]
             },
-            afterBuild: {
-                files: [{
-                    expand: true,
-                    flatten: true,
-                    dot: true,
-                    cwd: '<%%= yeoman.dist %>/scripts',
-                    dest: '<%%= yeoman.dist %>/scripts/vendor',
-                    src: [
-                        '*.js',
-                        '!main.js'
-                    ]
-                }]
-
-            },
             styles: {
                 expand: true,
                 dot: true,
@@ -408,7 +377,7 @@ module.exports = function(grunt) {
                 dest: '.tmp/styles/',
                 src: '{,*/}*.css'
             }
-        },
+        },<% if (includeModernizr) { %>
 
         // Generates a custom Modernizr build that includes only the tests you
         // reference in your app
@@ -425,7 +394,7 @@ module.exports = function(grunt) {
                 },
                 uglify: true
             }
-        },
+        },<% } %>
 
         // Run some tasks in parallel to speed up build process
         concurrent: {
@@ -476,9 +445,9 @@ module.exports = function(grunt) {
         }
 
         grunt.task.run([
-            'connect:test', <% if (testFramework === 'mocha') { %>
-            'mocha' <% } else if (testFramework === 'jasmine') { %>
-            'jasmine' <% } %>
+            'connect:test',<% if (testFramework === 'mocha') { %>
+            'mocha'<% } else if (testFramework === 'jasmine') { %>
+            'jasmine'<% } %>
         ]);
     });
 
@@ -491,8 +460,8 @@ module.exports = function(grunt) {
         'browserify:dist',
         'uglify',
         'clean:afterBuild',
-        'copy:dist',
-        //'modernizr',
+        'copy:dist',<% if (includeModernizr) { %>
+        'modernizr',<% } %>
         // 'rev',
         'usemin',
         'htmlmin'
