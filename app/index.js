@@ -239,6 +239,7 @@ AngularWithBrowserifyGenerator.prototype.install = function install() {
     skipMessage: this.options['skip-install-message'],
     skipInstall: this.options['skip-install'],
     callback: function() {
+      var projectDir = process.cwd() + '/app';
       if (self.includeModernizr) {
         //copy modernizr
         fs.exists(projectDir + '/src/vendor/modernizr.js', function(exists) {
