@@ -181,6 +181,7 @@ AngularWithBrowserifyGenerator.prototype.jsFile = function jsFile() {
   var prefix = 'app/src';
   this.mkdir(prefix);
   this.copy('src/index.js', prefix + '/index.js');
+  this.directory('src/home', prefix + '/home');
 };
 
 AngularWithBrowserifyGenerator.prototype.app = function app() {

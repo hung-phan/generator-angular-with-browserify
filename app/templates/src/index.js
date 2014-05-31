@@ -23,6 +23,8 @@ var bindonce = require('bindonce');<% } %><% if (includeUIBootstrap) { %>
 var uiBootstrap = require('ui-bootstrap-tpls');<% }%>
 
 //load src module
+//require home module
+require('./home/home');
 
 //angular configuration
 angular.element(document).ready(function () {
@@ -34,6 +36,7 @@ angular.element(document).ready(function () {
         'ui.bootstrap',<% } %><% if (includeAngularAnimate) { %>
         'ngAnimate', <% } %><% if (includeBindonce) { %>
         'pasvaz.bindonce',<% } %>
+        'homeModule'
     ]).config(['$urlRouterProvider', '$provide', function($urlRouterProvider, $provide) {
         $urlRouterProvider.otherwise('/');
 
