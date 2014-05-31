@@ -239,13 +239,14 @@ AngularWithBrowserifyGenerator.prototype.install = function install() {
     skipMessage: this.options['skip-install-message'],
     skipInstall: this.options['skip-install'],
     callback: function() {
-      var projectDir = process.cwd() + '/app';
       if (self.includeModernizr) {
+        var projectDir = process.cwd() + '/app';
+        self.mkdir('app/scripts/vendor');
         //copy modernizr
-        fs.exists(projectDir + '/src/vendor/modernizr.js', function(exists) {
+        fs.exists(projectDir + '/scripts/vendor/modernizr.js', function(exists) {
           if (!exists) {
             fs.createReadStream(projectDir + '/bower_components/modernizr/modernizr.js')
-            .pipe(fs.createWriteStream(projectDir + '/src/vendor/modernizr.js'));
+            .pipe(fs.createWriteStream(projectDir + '/scripts/vendor/modernizr.js'));
           }
         });
       }
