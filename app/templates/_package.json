@@ -26,7 +26,6 @@
     "grunt-contrib-jasmine": "*",<% } %>
     "grunt-browserify": "*",
     "debowerify": "*",
-    "browsernizr": "*",
     "envify": "*",
     "grunt-bower-install": "*",
     "grunt-contrib-imagemin": "*",

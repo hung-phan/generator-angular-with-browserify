@@ -8,6 +8,9 @@ module.exports = function(grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    // include browserify alias to config file
+    var browserifyAliasConfig = require('./browserify.config.js');
+
     // Define the configuration for all the tasks
     grunt.initConfig({
 
@@ -58,7 +61,7 @@ module.exports = function(grunt) {
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             //js: {
-                //files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
+                //files: ['<%%= yeoman.app %>/src/{,*/}*.js'],
                 //tasks: ['jshint'],
                 //options: { livereload: true }
             //},
@@ -68,7 +71,7 @@ module.exports = function(grunt) {
             },
             //uncomment this if you want to run testing everytime your scripts changing
             //karma: {
-                //files: ['app/scripts/**/*.js', 'test/**/*.js'],
+                //files: ['app/src/**/*.js', 'test/**/*.js'],
                 //tasks: ['karma:unit'] //NOTE the :run flag
             //},
             gruntfile: {
@@ -80,8 +83,8 @@ module.exports = function(grunt) {
             },
             browserify: {
                 files: [
-                    '<%%= yeoman.app %>/scripts/{,*/}*.js',
-                    '!<%%= yeoman.app %>/scripts/main.js'
+                    '<%%= yeoman.app %>/src/{,*/}*.js',
+                    '!<%%= yeoman.app %>/src/main.js'
                 ],
                 tasks: ['browserify:app'],
                 options: { livereload: true }
@@ -124,7 +127,7 @@ module.exports = function(grunt) {
             afterBuild: {
                 files: [{
                     dot: true,
-                    src: ['<%%= yeoman.dist %>/scripts/index.js']
+                    src: ['<%%= yeoman.dist %>/src/index.js']
                 }]
             },
             server: '.tmp'
@@ -138,8 +141,8 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%%= yeoman.app %>/scripts/vendor/*',
+                '<%%= yeoman.app %>/src/{,*/}*.js',
+                '!<%%= yeoman.app %>/src/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
         },<% if (testFramework === 'jasmine') { %>
@@ -154,7 +157,7 @@ module.exports = function(grunt) {
         // Jasmine testing framework configuration options
         jasmine: {
             pivotal: {
-                src: '<%%= yeoman.app %>/scripts/**/*.js',
+                src: '<%%= yeoman.app %>/src/**/*.js',
                 options: {
                     specs: 'test/spec/*Spec.js',
                     helpers: 'test/spec/*Helper.js'
@@ -179,7 +182,7 @@ module.exports = function(grunt) {
                 cssDir: '.tmp/styles',
                 generatedImagesDir: '.tmp/images/generated',
                 imagesDir: '<%%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
+                javascriptsDir: '<%= yeoman.app %>/src',
                 fontsDir: '<%%= yeoman.app %>/styles/fonts',
                 importPath: '<%%= yeoman.app %>/bower_components',
                 httpImagesPath: '/images',
@@ -222,23 +225,12 @@ module.exports = function(grunt) {
         //browserify task
         browserify: {
           app: {
-            files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
-            options: {
-              alias: [
-                './app/bower_components/jquery/dist/jquery.js:jquery',<% if (includeLodash) { %>
-                './app/bower_components/lodash/dist/lodash.js:lodash',<% } %>
-              ],
-              debug: true
-            }
+            files: { '<%%= yeoman.app %>/src/main.js': ['<%%= yeoman.app %>/src/index.js'] },
+            options: { alias: browserifyAliasConfig, debug: true }
           },
           dist: {
-            files: { '<%%= yeoman.app %>/scripts/main.js': ['<%%= yeoman.app %>/scripts/index.js'] },
-            options: {
-              alias: [
-                './app/bower_components/jquery/dist/jquery.js:jquery',<% if (includeLodash) { %>
-                './app/bower_components/lodash/dist/lodash.js:lodash',<% } %>
-              ]
-            }
+            files: { '<%%= yeoman.app %>/src/main.js': ['<%%= yeoman.app %>/src/index.js'] },
+            options: { alias: browserifyAliasConfig }
           }
         },
 
@@ -255,7 +247,7 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%%= yeoman.dist %>/scripts/{,*/}*.js',
+                        '<%%= yeoman.dist %>/src/{,*/}*.js',
                         '<%%= yeoman.dist %>/styles/{,*/}*.css',
                         '<%%= yeoman.dist %>/images/{,*/}*.{gif,jpeg,jpg,png,webp}',
                         '<%%= yeoman.dist %>/styles/fonts/{,*/}*.*'
@@ -337,8 +329,8 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: [{
-                    src: '<%%= yeoman.app %>/scripts/*.js', // source files mask
-                    dest: '<%%= yeoman.dist %>/scripts/', // destination folder
+                    src: '<%%= yeoman.app %>/src/*.js', // source files mask
+                    dest: '<%%= yeoman.dist %>/src/', // destination folder
                     expand: true, // allow dynamic building
                     flatten: true // remove all unnecessary nesting
                 }]
@@ -387,9 +379,9 @@ module.exports = function(grunt) {
                 outputFile: '<%%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
                 files: {
                     src: [
-                        '<%%= yeoman.dist %>/scripts/{,*/}*.js',
+                        '<%%= yeoman.dist %>/src/{,*/}*.js',
                         '<%%= yeoman.dist %>/styles/{,*/}*.css',
-                        '!<%%= yeoman.dist %>/scripts/vendor/*'
+                        '!<%%= yeoman.dist %>/src/vendor/*'
                     ]
                 },
                 uglify: true

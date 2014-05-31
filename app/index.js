@@ -42,13 +42,10 @@ AngularWithBrowserifyGenerator.prototype.askForCSSFramework = function askForCSS
     type: 'list',
     name: 'cssFramework',
     message: 'What CSS framework would you like to include?',
-    choices: [{
-      name: 'SASS Bootstrap',
-      value: 'SASSBootstrap'
-    }, {
-      name: 'SASS Compass framework',
-      value: 'CompassFramework'
-    }]
+    choices: [
+      { name: 'SASS Bootstrap'         , value: 'SASSBootstrap' },
+      { name: 'SASS Compass framework' , value: 'CompassFramework' }
+    ]
   }];
 
   this.prompt(prompts, function (props) {
@@ -64,19 +61,11 @@ AngularWithBrowserifyGenerator.prototype.askForCSSFile = function askForCSSFile(
     type: 'checkbox',
     name: 'cssFile',
     message: 'What css library would you like to include?',
-    choices: [{
-      name: 'Buttons for SASS and Compass by Alexwolfe',
-      value: 'includeButtonCss',
-      checked: false
-    }, {
-      name: 'Animate SCSS',
-      value: 'includeAnimateCss',
-      checked: false
-    }, {
-      name: 'Bootstrap font-awesome',
-      value: 'includeFontAwesome',
-      checked: true
-    }]
+    choices: [
+      { name: 'SASS Button by Alexwolfe' , value: 'includeButtonCss'   , checked: false },
+      { name: 'Animate SCSS'             , value: 'includeAnimateCss'  , checked: false },
+      { name: 'Bootstrap font-awesome'   , value: 'includeFontAwesome' , checked: true }
+    ]
   }];
 
   this.prompt(prompts, function (props) {
@@ -98,31 +87,14 @@ AngularWithBrowserifyGenerator.prototype.askForJSFile = function askForJSFile() 
     type: 'checkbox',
     name: 'jsFile',
     message: 'What js library would you like to include?',
-    choices: [{
-      name: 'Lodash.js',
-      value: 'includeLodash',
-      checked: false
-    }, {
-      name: 'Angular UI-Bootstrap',
-      value: 'includeUIBootstrap',
-      checked: false
-    }, {
-      name: 'Angular animate',
-      value: 'includeAngularAnimate',
-      checked: false
-    }, {
-      name: 'Bindonce by Pasvaz (high performance binding for angular)',
-      value: 'includeBindonce',
-      checked: false
-    }, {
-      name: 'Jasmine Testing framework',
-      value: 'includeJasmine',
-      checked: true
-    }, {
-      name: 'Modernizr',
-      value: 'includeModernizr',
-      checked: true
-    }]
+    choices: [
+      { name: 'Lodash.js', value: 'includeLodash', checked: false },
+      { name: 'Angular UI-Bootstrap', value: 'includeUIBootstrap', checked: false },
+      { name: 'Angular animate', value: 'includeAngularAnimate', checked: false },
+      { name: 'Bindonce by Pasvaz', value: 'includeBindonce', checked: false },
+      { name: 'Jasmine Testing framework', value: 'includeJasmine', checked: true },
+      { name: 'Modernizr', value: 'includeModernizr', checked: true }
+    ]
   }];
 
   this.prompt(prompts, function (props) {
@@ -144,6 +116,7 @@ AngularWithBrowserifyGenerator.prototype.askForJSFile = function askForJSFile() 
 
 AngularWithBrowserifyGenerator.prototype.gruntfile = function gruntfile() {
   this.template('Gruntfile.js');
+  this.template('browserify.config.js');
 };
 
 AngularWithBrowserifyGenerator.prototype.packageJSON= function packageJSON() {
@@ -166,8 +139,6 @@ AngularWithBrowserifyGenerator.prototype.h5bp = function h5bp() {
   this.copy('robots.txt', 'app/robots.txt');
   this.copy('htaccess', 'app/.htaccess');
   this.template('index.html', 'app/index.html');
-  this.template('partials/home-page.html', 'app/partials/home-page.html');
-  this.copy('partials/paggie.html', 'app/partials/paggie.html');
 };
 
 AngularWithBrowserifyGenerator.prototype.mainStylesheet = function mainStylesheet() {
@@ -181,7 +152,7 @@ AngularWithBrowserifyGenerator.prototype.mainStylesheet = function mainStyleshee
 
   if (this.includeFontAwesome) {
       header += "$fa-font-path: '../bower_components/font-awesome/fonts';\n" +
-         "@import '../bower_components/font-awesome/scss/font-awesome';\n";
+                "@import '../bower_components/font-awesome/scss/font-awesome';\n";
   }
   if (this.includeButtonCss) {
       header += "@import '../bower_components/Buttons/scss/buttons';\n"
@@ -193,11 +164,11 @@ AngularWithBrowserifyGenerator.prototype.mainStylesheet = function mainStyleshee
   switch(this.cssFramework) {
     case 'CompassFramework':
       header += "@import 'compass';\n" +
-        "@import 'compass/reset';\n";
+                "@import 'compass/reset';\n";
       break;
     case 'SASSBootstrap':
       header += "$icon-font-path: '../bower_components/sass-bootstrap/fonts/';\n" +
-        "@import '../bower_components/sass-bootstrap/lib/bootstrap';\n";
+                "@import '../bower_components/sass-bootstrap/lib/bootstrap';\n";
       break;
   }
 
@@ -207,18 +178,13 @@ AngularWithBrowserifyGenerator.prototype.mainStylesheet = function mainStyleshee
 };
 
 AngularWithBrowserifyGenerator.prototype.jsFile = function jsFile() {
-  var prefix = 'app/scripts';
+  var prefix = 'app/src';
   this.mkdir(prefix);
-  this.copy('scripts/index.js', prefix + '/index.js');
-  this.copy('scripts/controllers.js', prefix + '/controllers/controllers.js');
-  this.copy('scripts/directives.js', prefix + '/directives/directives.js');
-  this.copy('scripts/filters.js', prefix + '/filters/filters.js');
-  this.copy('scripts/services.js', prefix + '/services/services.js');
+  this.copy('src/index.js', prefix + '/index.js');
 };
 
 AngularWithBrowserifyGenerator.prototype.app = function app() {
   this.mkdir('app/images');
-  this.mkdir('app/partials');
   this.mkdir('config');
 };
 
@@ -241,12 +207,12 @@ AngularWithBrowserifyGenerator.prototype.install = function install() {
     callback: function() {
       if (self.includeModernizr) {
         var projectDir = process.cwd() + '/app';
-        self.mkdir('app/scripts/vendor');
+        self.mkdir('app/src/vendor');
         //copy modernizr
-        fs.exists(projectDir + '/scripts/vendor/modernizr.js', function(exists) {
+        fs.exists(projectDir + '/src/vendor/modernizr.js', function(exists) {
           if (!exists) {
             fs.createReadStream(projectDir + '/bower_components/modernizr/modernizr.js')
-            .pipe(fs.createWriteStream(projectDir + '/scripts/vendor/modernizr.js'));
+            .pipe(fs.createWriteStream(projectDir + '/src/vendor/modernizr.js'));
           }
         });
       }
