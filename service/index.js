@@ -8,10 +8,14 @@ var ServiceGenerator = module.exports = function ServiceGenerator(args, options,
   yeoman.generators.NamedBase.apply(this, arguments);
 
   console.log('You called the service subgenerator with the argument ' + this.name + '.');
+  this.uppercaseName = this.name.charAt(0).toUpperCase() + this.name.slice(1);
 };
 
 util.inherits(ServiceGenerator, yeoman.generators.NamedBase);
 
 ServiceGenerator.prototype.files = function files() {
-  this.template('service-template.js', 'app/scripts/services/' + this.name + '-service.js');
+  var prefix = 'app/src/' + this.name + '/';
+  this.mkdir(prefix);
+  this.template('service-template.js'       , prefix + this.name + '.js');
+  this.template('service-template.spec.js'  , prefix + this.name + '.spec.js');
 };
