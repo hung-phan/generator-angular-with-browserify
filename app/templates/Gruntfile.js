@@ -236,7 +236,7 @@ module.exports = function(grunt) {
             options: { alias: browserifyAliasConfig, debug: true }
           },
           dist: {
-            files: { '<%%= yeoman.app %>/dist/main.js': ['<%%= yeoman.app %>/src/index.js'] },
+            files: { '<%%= yeoman.dist %>/src/main.js': ['<%%= yeoman.app %>/src/index.js'] },
             options: { alias: browserifyAliasConfig }
           },
           spec: {
