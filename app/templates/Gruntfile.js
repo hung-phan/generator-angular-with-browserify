@@ -84,7 +84,9 @@ module.exports = function(grunt) {
             browserify: {
                 files: [
                     '<%%= yeoman.app %>/src/{,*/}*.js',
-                    '!<%%= yeoman.app %>/src/main.js'
+                    '<%%= yeoman.app %>/src/**/*.spec.js',
+                    '!<%%= yeoman.app %>/src/main.js',
+                    '!<%%= yeoman.app %>/src/spec.js'
                 ],
                 tasks: ['browserify:app'],
                 options: { livereload: true }
