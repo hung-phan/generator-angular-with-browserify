@@ -426,6 +426,7 @@ module.exports = function(grunt) {
             'clean:server',
             'concurrent:server',
             'browserify:app',
+            'browserify:spec',
             'concat',
             'autoprefixer',
             'connect:livereload',
