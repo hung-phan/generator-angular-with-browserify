@@ -8,10 +8,14 @@ var FilterGenerator = module.exports = function FilterGenerator(args, options, c
   yeoman.generators.NamedBase.apply(this, arguments);
 
   console.log('You called the filter subgenerator with the argument ' + this.name + '.');
+  this.uppercaseName = this.name.charAt(0).toUpperCase() + this.name.slice(1);
 };
 
 util.inherits(FilterGenerator, yeoman.generators.NamedBase);
 
 FilterGenerator.prototype.files = function files() {
-  this.template('filter-template.js', 'app/scripts/filters/' + this.name + '-filter.js');
+  var prefix = 'app/src/' + this.name + '/';
+  this.mkdir(prefix);
+  this.template('filter-template.js'       , prefix + this.name + '.js');
+  this.template('filter-template.spec.js'  , prefix + this.name + '.spec.js');
 };
