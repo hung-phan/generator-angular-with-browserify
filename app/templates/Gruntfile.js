@@ -340,7 +340,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: [{
-                    src: '<%%= yeoman.dist %>/dist/*.js', // source files mask
+                    src: '<%%= yeoman.dist %>/src/{,*/}*.js', // source files mask
                     dest: '<%%= yeoman.dist %>/src/', // destination folder
                     expand: true, // allow dynamic building
                     flatten: true // remove all unnecessary nesting
@@ -387,7 +387,7 @@ module.exports = function(grunt) {
         modernizr: {
             dist: {
                 devFile: '<%%= yeoman.app %>/bower_components/modernizr/modernizr.js',
-                outputFile: '<%%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
+                outputFile: '<%%= yeoman.dist %>/src/vendor/modernizr.js',
                 files: {
                     src: [
                         '<%%= yeoman.dist %>/src/{,*/}*.js',
