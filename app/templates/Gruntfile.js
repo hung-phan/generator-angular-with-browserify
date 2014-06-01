@@ -319,7 +319,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%%= yeoman.dist %>',
-                    src: '{,*/}*.html',
+                    src: '**/*.html',
                     dest: '<%%= yeoman.dist %>'
                 }]
             }
@@ -369,6 +369,14 @@ module.exports = function(grunt) {
                         'bower_components/sass-bootstrap/fonts/*.*',
                         'bower_components/font-awesome/fonts/*.*'
                     ]
+                }]
+            },
+            html: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= yeoman.app %>',
+                    dest: '<%%= yeoman.dist %>',
+                    src: ['src/**/*.html']
                 }]
             },
             styles: {
@@ -463,6 +471,7 @@ module.exports = function(grunt) {
         'clean:afterBuild',
         'copy:dist',<% if (includeModernizr) { %>
         'modernizr',<% } %>
+        'copy:html',
         'uglify',
         // 'rev',
         'usemin',
