@@ -7,8 +7,8 @@ require('angular-mocks');
 describe('filter 100000', function() {
     var <%= name %>Filter;
     beforeEach(angular.mock.module('<%= name %>Module'));
-    beforeEach(angular.mock.inject(function(_$injector_) {
-        <%= name %>Filter = _$injector_.get('<%= name %>Filter');
+    beforeEach(angular.mock.inject(function(_$filter_) {
+        <%= name %>Filter = _$filter_('<%= name %>Filter');
     }));
 
     it('should be equal 100,000', function() {
