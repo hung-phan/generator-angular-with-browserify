@@ -460,10 +460,10 @@ module.exports = function(grunt) {
         'autoprefixer',
         'cssmin',
         'browserify:dist',
-        'uglify',
         'clean:afterBuild',
         'copy:dist',<% if (includeModernizr) { %>
         'modernizr',<% } %>
+        'uglify',
         // 'rev',
         'usemin',
         'htmlmin'
