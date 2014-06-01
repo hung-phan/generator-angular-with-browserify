@@ -7,18 +7,16 @@ module.exports = function(config) {
     basePath: '..',
 
     // frameworks to use
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.js',
-      'app/**/*.spec.js',
+      'app/src/spec.js',
       'app/src/**/*.html',
     ],
 
     // Add browserify to preprocessors
     preprocessors: {
-      'app/**/*.spec.js': ['browserify'],
       'app/src/**/*.html': 'ng-html2js'
     },
 

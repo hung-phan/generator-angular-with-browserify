@@ -1,9 +1,9 @@
 'use strict';
-//require angular mock for testing
-require('angular-mocks');
-
 //require home module
 require('./home');
+
+//require angular mock for testing
+require('angular-mocks');
 
 describe('controller title', function() {
     var $scope;

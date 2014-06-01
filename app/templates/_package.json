@@ -21,7 +21,6 @@
     "karma-coffee-preprocessor": "*",
     "karma-phantomjs-launcher": "*",
     "karma": "*",
-    "karma-browserify": "*",
     "grunt-karma": "*",
     "grunt-contrib-jasmine": "*",<% } %>
     "grunt-browserify": "*",

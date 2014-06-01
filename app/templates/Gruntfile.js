@@ -89,6 +89,10 @@ module.exports = function(grunt) {
                 tasks: ['browserify:app'],
                 options: { livereload: true }
             },
+            browserifySpec: {
+                files: ['<%%= yeoman.app %>/src/{,*/}*.spec.js'],
+                tasks: ['browserify:spec']
+            },
             styles: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['newer:copy:styles', 'autoprefixer']
@@ -99,6 +103,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     '<%%= yeoman.app %>/{,*/}*.html',
+                    '<%%= yeoman.app %>/src/**/*.html',
                     '.tmp/styles/{,*/}*.css',
                     '<%%= yeoman.app %>/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
                 ]
@@ -230,6 +235,10 @@ module.exports = function(grunt) {
           },
           dist: {
             files: { '<%%= yeoman.app %>/src/main.js': ['<%%= yeoman.app %>/src/index.js'] },
+            options: { alias: browserifyAliasConfig }
+          },
+          spec: {
+            files: { '<%%= yeoman.app %>/src/spec.js': ['<%%= yeoman.app %>/src/**/*.spec.js'] },
             options: { alias: browserifyAliasConfig }
           }
         },
