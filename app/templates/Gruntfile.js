@@ -341,9 +341,7 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     src: '<%%= yeoman.dist %>/src/{,*/}*.js', // source files mask
-                    dest: '<%%= yeoman.dist %>/src/', // destination folder
-                    expand: true, // allow dynamic building
-                    flatten: true // remove all unnecessary nesting
+                    expand: true // allow dynamic building
                 }]
             }
         },
