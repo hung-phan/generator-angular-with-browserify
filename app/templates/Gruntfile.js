@@ -92,7 +92,7 @@ module.exports = function(grunt) {
                 options: { livereload: true }
             },
             browserifySpec: {
-                files: ['<%%= yeoman.app %>/src/{,*/}*.spec.js'],
+                files: ['<%%= yeoman.app %>/src/**/*.spec.js'],
                 tasks: ['browserify:spec']
             },
             styles: {
