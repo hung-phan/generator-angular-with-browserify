@@ -81,6 +81,10 @@ module.exports = function(grunt) {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer', 'concat']
             },
+            browserifySpec: {
+                files: ['<%%= yeoman.app %>/src/**/*.spec.js'],
+                tasks: ['browserify:spec']
+            },
             browserify: {
                 files: [
                     '<%%= yeoman.app %>/src/**/*.js',
@@ -90,10 +94,6 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['browserify:app'],
                 options: { livereload: true }
-            },
-            browserifySpec: {
-                files: ['<%%= yeoman.app %>/src/**/*.spec.js'],
-                tasks: ['browserify:spec']
             },
             styles: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
