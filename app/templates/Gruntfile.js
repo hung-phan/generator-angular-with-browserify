@@ -236,7 +236,7 @@ module.exports = function(grunt) {
             options: { alias: browserifyAliasConfig, debug: true }
           },
           dist: {
-            files: { '<%%= yeoman.app %>/src/main.js': ['<%%= yeoman.app %>/src/index.js'] },
+            files: { '<%%= yeoman.app %>/dist/main.js': ['<%%= yeoman.app %>/src/index.js'] },
             options: { alias: browserifyAliasConfig }
           },
           spec: {
@@ -340,7 +340,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: [{
-                    src: '<%%= yeoman.app %>/src/*.js', // source files mask
+                    src: '<%%= yeoman.dist %>/dist/*.js', // source files mask
                     dest: '<%%= yeoman.dist %>/src/', // destination folder
                     expand: true, // allow dynamic building
                     flatten: true // remove all unnecessary nesting
