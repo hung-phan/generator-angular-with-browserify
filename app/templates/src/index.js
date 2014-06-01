@@ -12,15 +12,15 @@ window._ = lodash;<% } %>
 //include angular
 require('angular/angular');
 //require angular resource for easily handling sending and receiving request
-var angularResource = require('angular-resource');<% if (includeAngularAnimate) { %>
+require('angular-resource');<% if (includeAngularAnimate) { %>
 //require angular animate for easily handling animation. I recommend to use this with tweenmax (bower install --save greensock)
-var angularAnimate = require('angular-animate');<% } %>
+require('angular-animate');<% } %>
 //require angular for better handling and binding controller
-var angularUiRouter = require('angular-ui-router');<% if (includeBindonce) { %>
+require('angular-ui-router');<% if (includeBindonce) { %>
 //require bindonce to optimize watch for angular binding [https://github.com/Pasvaz/bindonce]
-var bindonce = require('bindonce');<% } %><% if (includeUIBootstrap) { %>
+require('bindonce');<% } %><% if (includeUIBootstrap) { %>
 //require ui-bootstrap with the embeded template [http://angular-ui.github.io/bootstrap/]
-var uiBootstrap = require('ui-bootstrap-tpls');<% }%>
+require('ui-bootstrap-tpls');<% }%>
 
 //load src module
 //require home module

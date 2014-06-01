@@ -1,5 +1,6 @@
 'use strict';
 require('angular/angular');
+require('angular-ui-router');
 
 // home module
 angular.module('homeModule', ['ui.router']).config(['$stateProvider', function($stateProvider) {
