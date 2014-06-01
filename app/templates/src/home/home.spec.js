@@ -9,8 +9,8 @@ describe('controller title', function() {
     var $scope;
     var $location;
     var homeController;
-    beforeEach(module('homeModule'));
-    beforeEach(inject(function(_$injector_, _$rootScope_) {
+    beforeEach(angular.mock.module('homeModule'));
+    beforeEach(angular.mock.inject(function(_$injector_, _$rootScope_) {
         $scope = _$rootScope_.$new();
         $location = _$injector_.get('$location');
         var $controller = _$injector_.get('$controller');
