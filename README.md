@@ -37,6 +37,104 @@ Other dependencies
 
 5. Compass (gem install compass)
 
+## Structure
+
+__New structure__ is based on [ng-boilerplate] (https://github.com/ngbp/ngbp) but optimized with browserify.
+
+```
+application/
+  |- app/
+  |  |- bower_components/
+  |  |  |- <third libraries>
+  |  |- images/
+  |  |  |- <image files>
+  |  |- src/
+  |  |  |- index.js # main file
+  |  |  |- main.js # compiled file
+  |  |  |- spec.js # compiled file
+  |  |  |- <codeModule>/
+  |  |  |  |- codeModule.js
+  |  |  |  |- codeModule.spec.js
+  |  |  |  |- codeModule.tpl.html
+  |  |- style/
+  |  |  |- _custom_mixins.scss
+  |  |  |- style.scss
+  |  |  |- <other css files> - just copy other css files into this folder and
+  |  |  |- rerun `grunt serve` task to automatically concat css files
+  |  |- 404.html
+  |  |- favicon.ico
+  |  |- index.html
+  |  |- robots.txt
+  |- config/
+  |  |- e2e.config.js
+  |  |- karma.config.js
+  |- dist/
+  |  |- <build>
+  |- node_modules/
+  |  |- <node module code>
+  |- test/
+  |  |- e2eSpecs
+  |  |  |- page.e2espec.js
+  |  |  |- <other e2e specs>
+  |- bower.json
+  |- Gruntfile.js
+  |- browserify.config.js # configuration for browserify alias for your application
+  |- package.json
+```
+
+Old structure for revision __v0.2.*__
+
+```
+application/
+  |- app/
+  |  |- bower_components/
+  |  |  |- <third libraries>
+  |  |- images/
+  |  |  |- <image files>
+  |  |- scripts/
+  |  |  |- index.js # main file
+  |  |  |- main.js # compiled file
+  |  |  |- controllers/
+  |  |  |  |- controllers.js
+  |  |  |- services/
+  |  |  |  |- services.js
+  |  |  |- directives/
+  |  |  |  |- directives.js
+  |  |  |- filters/
+  |  |  |  |- filters.js
+  |  |- style/
+  |  |  |- _custom_mixins.scss
+  |  |  |- style.scss
+  |  |  |- <other css files> - just copy other css files into this folder and
+  |  |  |- rerun `grunt serve` task to automatically concat css files
+  |  |- 404.html
+  |  |- favicon.ico
+  |  |- index.html
+  |  |- robots.txt
+  |- config/
+  |  |- e2e.config.js
+  |  |- karma.config.js
+  |- dist/
+  |  |- <build>
+  |- node_modules/
+  |  |- <node module code>
+  |- test/
+  |  |- e2eSpecs
+  |  |  |- page.e2espec.js
+  |  |  |- <other e2e specs>
+  |  |- specs/
+  |  |  |- <specs files>
+  |  |- helpers/
+  |  |  |- <helper file for specs>
+  |  |- test-main.js
+  |- bower.json
+  |- Gruntfile.js
+  |- package.json
+```
+
+## Browserify alias
+Alias for grunt browserify task are declared in __browserify.config.js__ with the format of __path:alias__.
+
 ## Usage
 
 Your main javascript file is placed in app/scripts/index.js. The main.js is generated from grunt browserify task - I recommend to
@@ -51,9 +149,9 @@ $ grunt serve
 ```
 It will automatically open the webpage on your localhost:9000, or you will have to do it manuallly
 
-To run unit test
+To run unit test:
 ```
-$ grunt karma:unit:start
+$ grunt karma:unit # this requires the task `grunt browserify:spec` to be runned
 ```
 
 To run e2e test. This requires selenium browser and chromedriver. Make sure you view [angular/protractor] (https://github.com/angular/protractor)
@@ -75,7 +173,6 @@ $ yo angular-with-browserify:service "name" #replace the name with your module n
 $ yo angular-with-browserify:directive "name" #replace the name with your module name
 $ yo angular-with-browserify:filter "name" #replace the name with your module name
 ```
-
 
 ## License
 
