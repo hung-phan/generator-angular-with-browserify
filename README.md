@@ -137,8 +137,8 @@ Alias for grunt browserify task are declared in __browserify.config.js__ with th
 
 ## Usage
 
-Your main javascript file is placed in app/scripts/index.js. The main.js is generated from grunt browserify task - I recommend to
-leave the app/main.js unchanged.
+Your main javascript file is placed in app/src/index.js. The main.js is generated from grunt browserify task - I recommend to
+leave the app/src/main.js unchanged.
 
 The version of generator uses SASS Bootstrap as its main theme. If you want to use Compass framework, make sure that you
 view their docs to know what to include [Compass](http://compass-style.org/reference/compass)
