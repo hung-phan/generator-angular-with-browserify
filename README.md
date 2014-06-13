@@ -7,19 +7,19 @@ A generator for [Yeoman](http://yeoman.io).
 
 To run this version of yeoman generator. First, make sure that you have already installed yeoman
 
-```
+```bash
 $ npm install -g yo
 ```
 
 To install generator-angular-with-require from npm, run:
 
-```
+```bash
 $ npm install -g generator-angular-with-browserify
 ```
 
 Finally, initiate the generator:
 
-```
+```bash
 $ yo angular-with-browserify
 ```
 
@@ -144,30 +144,30 @@ The version of generator uses SASS Bootstrap as its main theme. If you want to u
 view their docs to know what to include [Compass](http://compass-style.org/reference/compass)
 
 To run the serve, and start building your application
-```
+```bash
 $ grunt serve
 ```
 It will automatically open the webpage on your localhost:9000, or you will have to do it manuallly
 
 To run unit test:
-```
+```bash
 $ grunt karma:unit # this requires the task `grunt browserify:spec` to be runned
 ```
 
 To run e2e test. This requires selenium browser and chromedriver. Make sure you view [angular/protractor] (https://github.com/angular/protractor)
-```
+```bash
 $ grunt shell:protractor
 ```
 
 To build files for production
-```
+```bash
 $ grunt build
 ```
 
 This also supports for subgenerator for controller, filter, service, and directive as well. Make sure you link them in your
 main module
 
-```
+```bash
 $ yo angular-with-browserify:controller "name" #replace the name with your module name
 $ yo angular-with-browserify:service "name" #replace the name with your module name
 $ yo angular-with-browserify:directive "name" #replace the name with your module name
