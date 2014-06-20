@@ -35,7 +35,7 @@ Other dependencies
 
 5. SASS (gem install sass)
 
-5. Compass (gem install compass)
+6. Compass (gem install compass)
 
 ## Structure
 
