@@ -26,7 +26,6 @@
     "grunt-browserify": "*",
     "debowerify": "*",
     "envify": "*",
-    "grunt-bower-install": "*",
     "grunt-contrib-imagemin": "*",
     "grunt-contrib-watch": "*",
     "grunt-rev": "*",
