@@ -2,6 +2,7 @@
 
 A generator for [Yeoman](http://yeoman.io).
 
+[![NPM](https://nodei.co/npm/generator-angular-with-browserify.png?downloads=true)](https://nodei.co/npm/generator-angular-with-browserify/)
 
 ## Getting Started
 
