@@ -154,8 +154,14 @@ To run unit test:
 ```bash
 $ grunt karma:unit # this requires the task `grunt browserify:spec` to be runned
 ```
-
 To run e2e test. This requires selenium browser and chromedriver. Make sure you view [angular/protractor] (https://github.com/angular/protractor)
+
+Setup protractor and seleium browser
+```bash
+$ npm install -g protractor
+$ webdriver-manager update
+```
+
 ```bash
 $ grunt shell:protractor
 ```
