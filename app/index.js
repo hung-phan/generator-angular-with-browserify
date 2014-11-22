@@ -190,7 +190,7 @@ AngularWithBrowserifyGenerator.prototype.app = function app() {
 AngularWithBrowserifyGenerator.prototype.testFile = function testFile() {
   this.copy('karma.conf.js', 'config/karma.conf.js');
   this.copy('e2e.conf.js', 'config/e2e.conf.js');
-  this.directory('test', 'test');
+  this.template('test/e2eSpecs/page.e2espec.js', 'test/e2eSpecs/page.e2espec.js');
 };
 
 AngularWithBrowserifyGenerator.prototype.install = function install() {
