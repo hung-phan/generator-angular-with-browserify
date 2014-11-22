@@ -162,6 +162,7 @@ $ npm install -g protractor
 $ webdriver-manager update
 ```
 
+Run actual e2e test
 ```bash
 $ grunt shell:protractor
 ```
