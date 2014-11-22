@@ -16,9 +16,7 @@ require('angular-resource');<% if (includeAngularAnimate) { %>
 //require angular animate for easily handling animation. I recommend to use this with tweenmax (bower install --save greensock)
 require('angular-animate');<% } %>
 //require angular for better handling and binding controller
-require('angular-ui-router');<% if (includeBindonce) { %>
-//require bindonce to optimize watch for angular binding [https://github.com/Pasvaz/bindonce]
-require('bindonce');<% } %><% if (includeUIBootstrap) { %>
+require('angular-ui-router');<% if (includeUIBootstrap) { %>
 //require ui-bootstrap with the embeded template [http://angular-ui.github.io/bootstrap/]
 require('ui-bootstrap-tpls');<% }%>
 
@@ -34,8 +32,7 @@ angular.element(document).ready(function () {
         'ui.router',
         'ngResource',<% if (includeUIBootstrap) { %>
         'ui.bootstrap',<% } %><% if (includeAngularAnimate) { %>
-        'ngAnimate', <% } %><% if (includeBindonce) { %>
-        'pasvaz.bindonce',<% } %>
+        'ngAnimate', <% } %>
         'homeModule'
     ]).config(['$urlRouterProvider', '$provide', function($urlRouterProvider, $provide) {
         $urlRouterProvider.otherwise('/');
