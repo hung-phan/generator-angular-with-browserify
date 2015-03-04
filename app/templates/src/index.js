@@ -3,7 +3,7 @@
 var $ = require('jquery');
 window.jQuery = $;<% if (cssFramework === 'SASSBootstrap') { %>
 //require boostrap.js for bootstrap components
-var bootstrap = require('bootstrap');<% } %><% if (includeLodash) { %>
+var bootstrap = require('../bower_components/sass-bootstrap/dist/js/bootstrap');<% } %><% if (includeLodash) { %>
 
 //require lodash
 var lodash = require('lodash');
